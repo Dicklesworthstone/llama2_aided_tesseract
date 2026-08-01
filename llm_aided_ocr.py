@@ -634,15 +634,24 @@ EXPLANATION: [Your explanation]
         logging.error(f"Raw response: {response}")
         return None, None
     
-async def main():
+async def main(
+        input_pdf_file_path = '160301289-Warren-Buffett-Katharine-Graham-Letter.pdf',
+        max_test_pages = 0,
+        skip_first_n_pages = 0,
+        reformat_as_markdown = True,
+        suppress_headers_and_page_numbers = True,
+        # TODO use this variable
+        starting_hallucination_similarity_threshold = 0.4,
+        # TODO use this variable
+        check_if_valid_english = False,
+        # TODO use this variable
+        sentence_embeddings_db_path = './sentence_embeddings.sqlite',
+        # TODO use this variable
+        test_filtering_hallucinations = False,
+    ):
     try:
         # Suppress HTTP request logs
         logging.getLogger("httpx").setLevel(logging.WARNING)
-        input_pdf_file_path = '160301289-Warren-Buffett-Katharine-Graham-Letter.pdf'
-        max_test_pages = 0
-        skip_first_n_pages = 0
-        reformat_as_markdown = True
-        suppress_headers_and_page_numbers = True
         
         # Download the model if using local LLM
         if USE_LOCAL_LLM:

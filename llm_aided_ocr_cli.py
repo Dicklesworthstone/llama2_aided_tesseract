@@ -26,7 +26,10 @@ async def run_pdf_processor(args):
         sentence_embeddings_db_path=args.db_path,
         test_filtering_hallucinations=args.test_filtering
     )
-    
-if __name__ == "__main__":
+
+def main():
     args = parse_arguments()
     asyncio.run(run_pdf_processor(args))
+
+if __name__ == "__main__":
+    main()

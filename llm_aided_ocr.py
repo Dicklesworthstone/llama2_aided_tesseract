@@ -26,9 +26,12 @@ try:
     GPU_AVAILABLE = True
 except ImportError:
     GPU_AVAILABLE = False
-    
+
 # Configuration
-config = DecoupleConfig(RepositoryEnv('.env'))
+if os.path.exists(".env"):
+    config = DecoupleConfig(RepositoryEnv('.env'))
+else:
+    config = DecoupleConfig(dict())
 
 USE_LOCAL_LLM = config.get("USE_LOCAL_LLM", default=False, cast=bool)
 API_PROVIDER = config.get("API_PROVIDER", default="OPENAI", cast=str) # OPENAI or CLAUDE

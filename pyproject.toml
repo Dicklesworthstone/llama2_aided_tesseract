@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-aided-ocr"
+version = "0.1.0"
+description = "Enhances Tesseract OCR output using LLMs for error correction, smart chunking, and Markdown formatting."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+# TODO Keep this list synchronized with requirements.txt.
+dependencies = [
+    "anthropic",
+    "filelock",
+    "langdetect",
+    "llama-cpp-python",
+    "numpy",
+    "nvgpu",
+    "openai",
+    "opencv-python-headless",
+    "pdf2image",
+    "pillow",
+    "pytesseract",
+    "python-decouple",
+    "scikit-learn",
+    "tiktoken",
+    "transformers",
+]
+
+[project.scripts]
+llm-aided-ocr-cli = "llm_aided_ocr_cli:main"
+
+[tool.setuptools]
+py-modules = ["llm_aided_ocr", "llm_aided_ocr_cli"]
